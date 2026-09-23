@@ -1,0 +1,645 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Emil San V. Macatiag | Gardening Portfolio</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
+
+    :root {
+      --forest: #234b35;
+      --leaf: #4f7d4b;
+      --sage: #a8c3a0;
+      --cream: #f7f4ea;
+      --sand: #e9e2ce;
+      --brown: #765b43;
+      --dark: #1e3025;
+      --white: #ffffff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--dark);
+      line-height: 1.6;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Playfair Display', serif;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* NAVIGATION */
+    header {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      background: rgba(247, 244, 234, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #ddd8c8;
+    }
+
+    nav {
+      max-width: 1150px;
+      margin: auto;
+      padding: 18px 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--forest);
+    }
+
+    .logo span {
+      color: var(--leaf);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--forest);
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--leaf);
+    }
+
+    .menu-btn {
+      display: none;
+      border: none;
+      background: var(--forest);
+      color: white;
+      padding: 8px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 120px 25px 70px;
+      background:
+        linear-gradient(120deg, rgba(247,244,234,0.95), rgba(247,244,234,0.65)),
+        url('https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=1800&q=85')
+        center/cover;
+    }
+
+    .hero-content {
+      max-width: 1150px;
+      width: 100%;
+      margin: auto;
+    }
+
+    .tag {
+      display: inline-block;
+      background: #dce8d5;
+      color: var(--forest);
+      padding: 8px 16px;
+      border-radius: 30px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 22px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.8rem, 6vw, 5.5rem);
+      line-height: 1.05;
+      max-width: 800px;
+      color: var(--forest);
+      margin-bottom: 25px;
+    }
+
+    .hero h1 span {
+      color: var(--leaf);
+      font-style: italic;
+    }
+
+    .hero p {
+      max-width: 560px;
+      font-size: 1.1rem;
+      color: #526354;
+      margin-bottom: 35px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 13px 24px;
+      border-radius: 30px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: 0.3s;
+      display: inline-block;
+    }
+
+    .btn-primary {
+      background: var(--forest);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--leaf);
+      transform: translateY(-3px);
+    }
+
+    .btn-outline {
+      border: 2px solid var(--forest);
+      color: var(--forest);
+    }
+
+    .btn-outline:hover {
+      background: var(--forest);
+      color: white;
+    }
+
+    /* GENERAL */
+    section {
+      padding: 90px 25px;
+    }
+
+    .container {
+      max-width: 1150px;
+      margin: auto;
+    }
+
+    .section-label {
+      color: var(--leaf);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      color: var(--forest);
+      margin-bottom: 18px;
+    }
+
+    .section-description {
+      max-width: 600px;
+      color: #667465;
+      margin-bottom: 40px;
+    }
+
+    /* ABOUT */
+    .about {
+      background: white;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .about-image {
+      height: 430px;
+      border-radius: 25px;
+      background:
+        linear-gradient(rgba(35,75,53,0.1), rgba(35,75,53,0.1)),
+        url('https://images.unsplash.com/photo-1599685315640-9c9b8e7e0a3f?auto=format&fit=crop&w=900&q=85')
+        center/cover;
+    }
+
+    .about-text p {
+      margin-bottom: 18px;
+      color: #667465;
+    }
+
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 25px;
+    }
+
+    .skill {
+      background: var(--sand);
+      color: var(--brown);
+      padding: 8px 14px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    /* SERVICES */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .service-card {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      border: 1px solid #e5e2d7;
+      transition: 0.3s;
+    }
+
+    .service-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 35px rgba(35,75,53,0.1);
+    }
+
+    .service-icon {
+      font-size: 2rem;
+      margin-bottom: 15px;
+    }
+
+    .service-card h3 {
+      color: var(--forest);
+      margin-bottom: 10px;
+      font-size: 1.35rem;
+    }
+
+    .service-card p {
+      color: #748074;
+      font-size: 0.9rem;
+    }
+
+    /* PROJECTS */
+    .projects {
+      background: #edf1e7;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .project-card {
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      transition: 0.3s;
+    }
+
+    .project-card:hover {
+      transform: translateY(-7px);
+    }
+
+    .project-image {
+      height: 220px;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .project-info {
+      padding: 25px;
+    }
+
+    .project-info h3 {
+      color: var(--forest);
+      margin-bottom: 8px;
+    }
+
+    .project-info p {
+      font-size: 0.9rem;
+      color: #748074;
+      margin-bottom: 15px;
+    }
+
+    .project-link {
+      color: var(--leaf);
+      font-weight: 700;
+      font-size: 0.85rem;
+    }
+
+    /* CONTACT */
+    .contact {
+      background: var(--forest);
+      color: white;
+      text-align: center;
+    }
+
+    .contact .section-label {
+      color: var(--sage);
+    }
+
+    .contact .section-title {
+      color: white;
+    }
+
+    .contact p {
+      max-width: 550px;
+      margin: 0 auto 30px;
+      color: #cbdac8;
+    }
+
+    .contact .btn-primary {
+      background: var(--sage);
+      color: var(--forest);
+    }
+
+    .contact .btn-primary:hover {
+      background: white;
+    }
+
+    .contact-details {
+      display: flex;
+      justify-content: center;
+      gap: 35px;
+      flex-wrap: wrap;
+      margin-top: 35px;
+      color: #cbdac8;
+      font-size: 0.9rem;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #193a29;
+      color: #a8bea7;
+      text-align: center;
+      padding: 25px;
+      font-size: 0.85rem;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: var(--cream);
+        flex-direction: column;
+        padding: 25px;
+        gap: 18px;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .menu-btn {
+        display: block;
+      }
+
+      .about-grid,
+      .services-grid,
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about-image {
+        height: 300px;
+      }
+
+      .hero {
+        text-align: center;
+      }
+
+      .hero p {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .buttons {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVIGATION -->
+  <header>
+    <nav>
+      <a href="#home" class="logo">Emil<span>🌿</span></a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+
+      <button class="menu-btn" onclick="toggleMenu()">☰</button>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <span class="tag">🌱 Gardening Portfolio</span>
+
+      <h1>
+        Growing ideas,<br>
+        nurturing <span>nature.</span>
+      </h1>
+
+      <p>
+        Hello, I'm <strong>Emil San V. Macatiag</strong>.
+        I create beautiful, sustainable, and meaningful garden spaces
+        inspired by nature and creativity.
+      </p>
+
+      <div class="buttons">
+        <a href="#projects" class="btn btn-primary">View My Work →</a>
+        <a href="#contact" class="btn btn-outline">Let's Connect</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="container about-grid">
+      <div class="about-image"></div>
+
+      <div class="about-text">
+        <div class="section-label">About Me</div>
+        <h2 class="section-title">A passion for growing things.</h2>
+
+        <p>
+          Gardening is more than planting seeds—it's about patience,
+          creativity, care, and creating spaces where life can flourish.
+        </p>
+
+        <p>
+          My work focuses on garden design, plant care, sustainable
+          gardening, and transforming ordinary spaces into refreshing
+          natural environments.
+        </p>
+
+        <div class="skills">
+          <span class="skill">🌿 Plant Care</span>
+          <span class="skill">🌱 Garden Design</span>
+          <span class="skill">🪴 Landscaping</span>
+          <span class="skill">🌍 Sustainability</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="container">
+      <div class="section-label">What I Do</div>
+      <h2 class="section-title">My Gardening Skills</h2>
+      <p class="section-description">
+        Combining creativity and care to bring gardens to life.
+      </p>
+
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">🌻</div>
+          <h3>Garden Design</h3>
+          <p>
+            Planning and designing attractive garden spaces
+            that balance beauty and functionality.
+          </p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">🪴</div>
+          <h3>Plant Care</h3>
+          <p>
+            Caring for plants through proper watering,
+            pruning, soil preparation, and maintenance.
+          </p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">🌎</div>
+          <h3>Sustainable Gardening</h3>
+          <p>
+            Using eco-friendly practices to create healthier
+            gardens and protect the environment.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="projects" id="projects">
+    <div class="container">
+      <div class="section-label">Selected Work</div>
+      <h2 class="section-title">Garden Projects</h2>
+      <p class="section-description">
+        A collection of garden ideas, plant projects, and natural spaces.
+      </p>
+
+      <div class="projects-grid">
+
+        <div class="project-card">
+          <div class="project-image"
+            style="background-image: url('https://images.unsplash.com/photo-1558904541-efa843a96f01?auto=format&fit=crop&w=900&q=85');">
+          </div>
+          <div class="project-info">
+            <h3>Backyard Garden</h3>
+            <p>A peaceful green space designed for relaxation and growth.</p>
+            <a href="#contact" class="project-link">Learn More →</a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-image"
+            style="background-image: url('https://images.unsplash.com/photo-1497250681960-ef046c08a56e?auto=format&fit=crop&w=900&q=85');">
+          </div>
+          <div class="project-info">
+            <h3>Indoor Plant Collection</h3>
+            <p>Bringing natural beauty indoors with carefully selected plants.</p>
+            <a href="#contact" class="project-link">Learn More →</a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-image"
+            style="background-image: url('https://images.unsplash.com/photo-1592150621744-aca64f48394a?auto=format&fit=crop&w=900&q=85');">
+          </div>
+          <div class="project-info">
+            <h3>Eco Garden</h3>
+            <p>A sustainable garden concept focused on environmental care.</p>
+            <a href="#contact" class="project-link">Learn More →</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="section-label">Get In Touch</div>
+      <h2 class="section-title">Let's grow something beautiful.</h2>
+
+      <p>
+        Have a garden idea, plant project, or creative collaboration?
+        I'd love to hear from you.
+      </p>
+
+      <a href="mailto:your-email@example.com" class="btn btn-primary">
+        Contact Me ✉
+      </a>
+
+      <div class="contact-details">
+        <span>📧 your-email@example.com</span>
+        <span>📍 Philippines</span>
+        <span>🌿 Gardening Enthusiast</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 Emil San V. Macatiag. Made with 🌱 and passion.</p>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById("navLinks").classList.toggle("active");
+    }
+
+    document.querySelectorAll(".nav-links a").forEach(link => {
+      link.addEventListener("click", () => {
+        document.getElementById("navLinks").classList.remove("active");
+      });
+    });
+  </script>
+
+</body>
+</html>
+```
